@@ -2,30 +2,112 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>名刺管理</title>
+  <title>名刺管理アプリ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; margin: 20px; position: relative; }
+
+    /* ヘッダーと検索バー */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    h1 { margin: 0; font-size: 1.5em; }
+
+    #search {
+      padding: 5px;
+      width: 200px;
+      max-width: 100%;
+      margin-top: 10px;
+    }
+
+    /* フォーム */
+    .form-group input,
+    .form-group textarea {
+      display: block;
+      margin: 5px 0;
+      padding: 5px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    button { margin: 5px 0; padding: 5px 10px; }
+
+    /* 名刺カード表示 */
+    #list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+
+    #list li {
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 250px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #list li strong {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+      display: block;
+      color: #333;
+    }
+
+    #list li button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #list li button:hover {
+      background-color: #e60000;
+    }
+
+    @media (max-width: 600px) {
+      #list li { width: 100%; }
+      #search { margin-top: 10px; }
+    }
+  </style>
 </head>
-
 <body>
-  <h1>名刺管理</h1>
-<input
-  id="search"
-  placeholder="検索（名前・会社・業種・電話）"
-  oninput="searchCards()"
-  <input id="name" placeholder="名前">
-  <input id="company" placeholder="会社名">
-  <input id="phone" placeholder="電話番号">
-  <input id="industry" placeholder="業種">
-  <textarea id="detail" placeholder="詳細・メモ"></textarea>
+  <div class="header">
+    <h1>名刺管理アプリ</h1>
+    <input id="search" placeholder="検索（名前・会社・業種・電話）" oninput="searchCards()">
+  </div>
 
-  <button onclick="save()">保存</button>
+  <div class="form-group">
+    <input id="name" placeholder="名前">
+    <input id="company" placeholder="会社名">
+    <input id="phone" placeholder="電話番号">
+    <input id="industry" placeholder="業種">
+    <textarea id="detail" placeholder="詳細・メモ"></textarea>
+    <button onclick="save()">保存</button>
+  </div>
 
+  <h2>名刺一覧</h2>
   <ul id="list"></ul>
 
-  <!-- Firebase（compat方式） -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
   <script src="script.js"></script>
 </body>
 </html>
