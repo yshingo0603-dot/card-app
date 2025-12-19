@@ -10,7 +10,7 @@ const db = firebase.firestore();
 
 // 一覧をリアルタイム表示
 db.collection("cards")
-  .orderBy("createdAt", "desc")
+  .orderBy("name")
   .onSnapshot(snapshot => {
     const list = document.getElementById("list");
     list.innerHTML = "";
@@ -71,4 +71,17 @@ function clearForm() {
   document.getElementById("phone").value = "";
   document.getElementById("industry").value = "";
   document.getElementById("detail").value = "";
+}
+function searchCards() {
+  const keyword = document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  const items = document.querySelectorAll("#list li");
+
+  items.forEach(li => {
+    const text = li.innerText.toLowerCase();
+    li.style.display = text.includes(keyword) ? "" : "none";
+  });
 }
