@@ -4,34 +4,25 @@
   <meta charset="UTF-8">
   <title>名刺管理</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <h1>名刺管理</h1>
-<!--
-  <input
-    id="search"
-    placeholder="検索（名前・会社・電話）"
-    oninput="searchCard()"
-  >
--->
-  <hr>
 
   <input id="name" placeholder="名前">
   <input id="company" placeholder="会社名">
   <input id="phone" placeholder="電話番号">
-  <input id="image" type="file" accept="image/*">
+  <input id="industry" placeholder="業種">
+  <textarea id="detail" placeholder="詳細・メモ"></textarea>
 
   <button onclick="save()">保存</button>
 
   <ul id="list"></ul>
 
-  <!-- 🔴 Firebase（compat方式） -->
+  <!-- Firebase（compat方式） -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  <!-- 自分のJSは必ず最後 -->
   <script src="script.js"></script>
 </body>
 </html>
